@@ -59,8 +59,9 @@ A free GitHub organization named after the business (for example `plevents-nj`) 
 1. **Google Business Profile** (business.google.com): the most important step for a local business.
    It puts P&L Events on Google Maps and in "party rentals near me" results. Choose "service-area business",
    add New Jersey towns, both phones, the website and many photos.
-2. **Google Search Console** (search.google.com/search-console): add `https://plevents.github.io/`,
-   verify with the "HTML tag" method (paste the tag in the `<head>` of `index.html`), then submit `sitemap.xml`.
+2. **Google Search Console** (search.google.com/search-console): the property `https://plevents.github.io/`
+   is verified with the `google-site-verification` tag in the `<head>` of `index.html` (keep that tag).
+   Under **Sitemaps**, submit `sitemap.xml`.
 3. Put the website link in the Instagram bio and the WhatsApp Business profile.
 
 ## Own domain (optional, about $12 per year)
