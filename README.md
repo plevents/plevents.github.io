@@ -46,6 +46,14 @@ Nothing goes to a server. The list is kept only in the visitor's browser.
 A free GitHub organization named after the business (for example `plevents-nj`) gives a cleaner address:
 `https://plevents-nj.github.io/` (repository name must be `plevents-nj.github.io`).
 
+## Link preview (WhatsApp, Facebook, Instagram)
+
+- The picture is `img/og.jpg`, 1200 × 630. WhatsApp shows only the **middle square** as a small thumbnail,
+  so keep the logo in the middle and the photos at the sides.
+- After changing it, raise the number in `og.jpg?v=2` in `index.html`.
+- Facebook keeps old previews. Open the Sharing Debugger (developers.facebook.com/tools/debug),
+  paste `https://plevents.github.io/` and press **Scrape Again**.
+
 ## Get found on Google (free)
 
 1. **Google Business Profile** (business.google.com): the most important step for a local business.
