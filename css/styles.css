@@ -26,7 +26,7 @@
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
 html.modal-open { overflow: hidden; }
 body {
   margin: 0; background: var(--bg); color: var(--sand);
@@ -56,6 +56,7 @@ b { font-weight: 700; }
   font: 700 11px/1.6 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
 }
 .sep { margin: 0 .35em; opacity: .9; }
+.eyebrow [lang="es"] { white-space: nowrap; } /* on phones the Spanish half wraps as one line, never one lone word */
 .es { font-family: var(--serif); font-style: italic; color: var(--muted); }
 
 .divider { display: flex; align-items: center; gap: 10px; width: 116px; margin: 22px 0; color: var(--gold); }
@@ -454,11 +455,11 @@ a.c-value:hover { color: var(--gold-hi); }
 .note.es { margin-top: 4px; font-size: 15.5px; color: var(--muted); }
 
 /* ---------- footer ---------- */
+/* The big bottom padding keeps the floating WhatsApp button from covering the footer, on every screen size. */
 .site-footer { padding: 30px 0 calc(100px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(59, 51, 36, .8); }
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 32px; }
 .footer-inner p { font: 700 10.5px/1.7 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
 .footer-inner a:hover { color: var(--gold-hi); }
-@media (min-width: 768px) { .site-footer { padding-bottom: 30px; } }
 
 /* ---------- floating dock ---------- */
 .dock {
@@ -554,14 +555,17 @@ dialog::backdrop { background: rgba(0, 0, 0, .64); -webkit-backdrop-filter: blur
   width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; margin: 0; padding: 0;
   border: 0; background: transparent; color: var(--cream); overflow: hidden;
 }
-.lightbox::backdrop { background: rgba(6, 6, 6, .95); }
+.lightbox::backdrop { background: rgba(6, 6, 6, .97); }
 .lightbox[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; animation: fadeIn .3s ease; }
 @keyframes fadeIn { from { opacity: 0; } }
 .lb-top { display: flex; align-items: center; justify-content: space-between; padding: 10px var(--gutter); }
 .lb-count { font: 700 11px/1 var(--sans); letter-spacing: .28em; color: var(--gold); }
-.lb-stage { position: relative; display: grid; place-items: center; min-height: 0; padding: 0 var(--gutter); touch-action: pan-y; }
+.lb-stage { position: relative; min-height: 0; touch-action: pan-y; }
+/* Centered in the space between the top bar and the caption, scaled down to fit it, same shape as the photo.
+   (Absolute position: a percent max-height inside a grid row does not limit the photo.) */
 .lb-img {
-  max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;
+  position: absolute; inset: 0; margin: auto;
+  width: auto; height: auto; max-width: calc(100% - 2 * var(--gutter)); max-height: 100%; object-fit: contain;
   padding: 6px; border: 1px solid var(--frame); background: var(--bg);
 }
 .lb-img.swap { animation: lbIn .45s var(--ease); }
@@ -576,7 +580,10 @@ dialog::backdrop { background: rgba(0, 0, 0, .64); -webkit-backdrop-filter: blur
 .lb-next { right: 10px; }
 .lightbox.single .lb-nav { display: none; }
 .lb-cap { padding: 14px var(--gutter) calc(18px + env(safe-area-inset-bottom)); text-align: center; font: italic 400 18px/1.4 var(--serif); color: var(--cream); }
-@media (min-width: 768px) { .lb-prev { left: 28px; } .lb-next { right: 28px; } }
+@media (min-width: 768px) {
+  .lb-prev { left: 28px; } .lb-next { right: 28px; }
+  .lightbox:not(.single) .lb-img { max-width: calc(100% - 2 * 92px); } /* arrows stay beside the photo, not on it */
+}
 
 /* ---------- scroll reveal ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--rd, 0s); }

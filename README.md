@@ -13,6 +13,7 @@ Plain HTML, CSS and JavaScript: no build step, no server, no database. It runs f
 | `css/styles.css` | Styles. Colors and fonts follow the catalog (black, gold, Cambria-style serif) |
 | `js/main.js` | Effects, photo viewer, and the quote list that sends to WhatsApp |
 | `img/` | Photos (`.webp`, named by item code), `og.jpg` (link preview), `qr-whatsapp.svg` |
+| `robots.txt`, `sitemap.xml` | Tell Google the page exists and may be indexed |
 
 ## How visitors ask for a quote
 
@@ -45,7 +46,17 @@ Nothing goes to a server. The list is kept only in the visitor's browser.
 A free GitHub organization named after the business (for example `plevents-nj`) gives a cleaner address:
 `https://plevents-nj.github.io/` (repository name must be `plevents-nj.github.io`).
 
+## Get found on Google (free)
+
+1. **Google Business Profile** (business.google.com): the most important step for a local business.
+   It puts P&L Events on Google Maps and in "party rentals near me" results. Choose "service-area business",
+   add New Jersey towns, both phones, the website and many photos.
+2. **Google Search Console** (search.google.com/search-console): add `https://plevents.github.io/`,
+   verify with the "HTML tag" method (paste the tag in the `<head>` of `index.html`), then submit `sitemap.xml`.
+3. Put the website link in the Instagram bio and the WhatsApp Business profile.
+
 ## Own domain (optional, about $12 per year)
 
 Buy a domain (for example `pleventsnj.com`), then in **Settings → Pages → Custom domain** enter it and
-follow GitHub's DNS steps. HTTPS stays free.
+follow GitHub's DNS steps. HTTPS stays free. Then change every full address `https://plevents.github.io/`
+in `index.html`, `robots.txt` and `sitemap.xml`.

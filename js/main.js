@@ -211,6 +211,7 @@
   }
   function openPhotos(el) {
     gallery = el.getAttribute('data-photos').split(/\s+/);
+    gallery.forEach(function (n) { new Image().src = 'img/' + n + '.webp'; }); // next/previous show at once
     index = 0;
     var host = el.closest('[data-code]');
     caption = el.getAttribute('data-caption') || (host ? host.dataset.code + ' · ' + host.dataset.name : '');
@@ -246,6 +247,7 @@
   // ---------- one click handler for the whole page
   document.addEventListener('click', function (e) {
     var t = e.target;
+    if (header.classList.contains('open') && !header.contains(t)) setMenu(false); // tap outside closes the menu
     var add = t.closest('.add, .add-mini');
     if (add) { toggle(add.closest('[data-code]').dataset.code); return; }
     var rm = t.closest('[data-remove]');
